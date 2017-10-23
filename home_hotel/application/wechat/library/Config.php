@@ -23,7 +23,7 @@ class Config
              *
              * 当值为 false 时，所有的日志都不会记录
              */
-            'debug'   => !!$config['debug'],
+            'debug'   => $config['debug'],
             /**
              * 账号基本信息，请从微信公众平台/开放平台获取
              */

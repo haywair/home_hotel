@@ -2,9 +2,6 @@
 composer.lock
 *.log
 *.css.map
-thinkphp
-vendor
 runtime
-addons
-public/assets/libs/
 /public/uploads
+.svn

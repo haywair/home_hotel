@@ -42,6 +42,7 @@ class Dashboard extends Backend
             'createlist'       => $createlist,
             'uploadmode'       => $uploadmode
         ]);
+
         return $this->view->fetch();
     }
 

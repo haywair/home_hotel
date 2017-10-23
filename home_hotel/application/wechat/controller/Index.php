@@ -32,6 +32,7 @@ class Index extends Controller
      */
     public function index()
     {
+
         $this->error("无前台页面");
     }
 
