@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v12.4.3 (64 bit)
-MySQL - 5.7.19-log : Database - 201710_tyadmin_hotel
+MySQL - 5.7.19-log : Database - 201710_sdty_admin
 *********************************************************************
 */
 
@@ -18,25 +18,25 @@ DROP TABLE IF EXISTS `sdty_admin`;
 
 CREATE TABLE `sdty_admin` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `username` varchar(20) NOT NULL DEFAULT '' COMMENT '用户名',
-  `nickname` varchar(50) NOT NULL DEFAULT '' COMMENT '昵称',
-  `password` varchar(32) NOT NULL DEFAULT '' COMMENT '密码',
-  `salt` varchar(30) NOT NULL DEFAULT '' COMMENT '密码盐',
-  `avatar` varchar(100) NOT NULL DEFAULT '' COMMENT '头像',
-  `email` varchar(100) NOT NULL DEFAULT '' COMMENT '电子邮箱',
+  `username` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户名',
+  `nickname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '昵称',
+  `password` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '密码',
+  `salt` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '密码盐',
+  `avatar` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '头像',
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '电子邮箱',
   `loginfailure` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '失败次数',
   `logintime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '登录时间',
   `createtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `updatetime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `token` varchar(59) NOT NULL DEFAULT '' COMMENT 'Session标识',
-  `status` varchar(30) NOT NULL DEFAULT 'normal' COMMENT '状态',
+  `token` varchar(59) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Session标识',
+  `status` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'normal' COMMENT '状态',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='管理员表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT COMMENT='管理员表';
 
 /*Data for the table `sdty_admin` */
 
-insert  into `sdty_admin`(`id`,`username`,`nickname`,`password`,`salt`,`avatar`,`email`,`loginfailure`,`logintime`,`createtime`,`updatetime`,`token`,`status`) values (1,'admin','Admin','0419c28aeb1e70c62689cdbd8809259b','X9et8j','/assets/img/avatar.png','admin@admin.com',0,1508471750,1492186163,1508471750,'87a2bb6b-0007-4ffe-8561-284d1cd952d7','normal');
+insert  into `sdty_admin`(`id`,`username`,`nickname`,`password`,`salt`,`avatar`,`email`,`loginfailure`,`logintime`,`createtime`,`updatetime`,`token`,`status`) values (1,'admin','Admin','0419c28aeb1e70c62689cdbd8809259b','X9et8j','/assets/img/avatar.png','admin@admin.com',0,1508483564,1492186163,1508483564,'8261a56e-e14f-4ee2-a94a-d20de9a9823a','normal');
 
 /*Table structure for table `sdty_admin_log` */
 
@@ -45,16 +45,16 @@ DROP TABLE IF EXISTS `sdty_admin_log`;
 CREATE TABLE `sdty_admin_log` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `admin_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '管理员ID',
-  `username` varchar(30) NOT NULL DEFAULT '' COMMENT '管理员名字',
-  `url` varchar(100) NOT NULL DEFAULT '' COMMENT '操作页面',
-  `title` varchar(100) NOT NULL DEFAULT '' COMMENT '日志标题',
-  `content` text NOT NULL COMMENT '内容',
-  `ip` varchar(50) NOT NULL DEFAULT '' COMMENT 'IP',
-  `useragent` varchar(255) NOT NULL DEFAULT '' COMMENT 'User-Agent',
+  `username` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '管理员名字',
+  `url` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '操作页面',
+  `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '日志标题',
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '内容',
+  `ip` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'IP',
+  `useragent` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'User-Agent',
   `createtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '操作时间',
   PRIMARY KEY (`id`),
   KEY `name` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='管理员日志表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='管理员日志表';
 
 /*Data for the table `sdty_admin_log` */
 
@@ -64,21 +64,21 @@ DROP TABLE IF EXISTS `sdty_attachment`;
 
 CREATE TABLE `sdty_attachment` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '物理路径',
-  `imagewidth` varchar(30) NOT NULL DEFAULT '' COMMENT '宽度',
-  `imageheight` varchar(30) NOT NULL DEFAULT '' COMMENT '宽度',
-  `imagetype` varchar(30) NOT NULL DEFAULT '' COMMENT '图片类型',
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '物理路径',
+  `imagewidth` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '宽度',
+  `imageheight` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '宽度',
+  `imagetype` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '图片类型',
   `imageframes` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '图片帧数',
   `filesize` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '文件大小',
-  `mimetype` varchar(30) NOT NULL DEFAULT '' COMMENT 'mime类型',
-  `extparam` varchar(255) NOT NULL DEFAULT '' COMMENT '透传数据',
+  `mimetype` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'mime类型',
+  `extparam` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '透传数据',
   `createtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建日期',
   `updatetime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   `uploadtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '上传时间',
-  `storage` enum('local','upyun','qiniu') NOT NULL DEFAULT 'local' COMMENT '存储位置',
-  `sha1` varchar(40) NOT NULL DEFAULT '' COMMENT '文件 sha1编码',
+  `storage` enum('local','upyun','qiniu') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'local' COMMENT '存储位置',
+  `sha1` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '文件 sha1编码',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='附件表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='附件表';
 
 /*Data for the table `sdty_attachment` */
 
@@ -91,13 +91,13 @@ DROP TABLE IF EXISTS `sdty_auth_group`;
 CREATE TABLE `sdty_auth_group` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '父组别',
-  `name` varchar(100) NOT NULL DEFAULT '' COMMENT '组名',
-  `rules` text NOT NULL COMMENT '规则ID',
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '组名',
+  `rules` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '规则ID',
   `createtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `updatetime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `status` varchar(30) NOT NULL DEFAULT '' COMMENT '状态',
+  `status` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='分组表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='分组表';
 
 /*Data for the table `sdty_auth_group` */
 
@@ -113,7 +113,7 @@ CREATE TABLE `sdty_auth_group_access` (
   UNIQUE KEY `uid_group_id` (`uid`,`group_id`),
   KEY `uid` (`uid`),
   KEY `group_id` (`group_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='权限分组表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='权限分组表';
 
 /*Data for the table `sdty_auth_group_access` */
 
@@ -125,23 +125,23 @@ DROP TABLE IF EXISTS `sdty_auth_rule`;
 
 CREATE TABLE `sdty_auth_rule` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `type` enum('menu','file') NOT NULL DEFAULT 'file' COMMENT 'menu为菜单,file为权限节点',
+  `type` enum('menu','file') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'file' COMMENT 'menu为菜单,file为权限节点',
   `pid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '父ID',
-  `name` varchar(100) NOT NULL DEFAULT '' COMMENT '规则名称',
-  `title` varchar(50) NOT NULL DEFAULT '' COMMENT '规则名称',
-  `icon` varchar(50) NOT NULL DEFAULT '' COMMENT '图标',
-  `condition` varchar(255) NOT NULL DEFAULT '' COMMENT '条件',
-  `remark` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '规则名称',
+  `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '规则名称',
+  `icon` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '图标',
+  `condition` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '条件',
+  `remark` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注',
   `ismenu` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否为菜单',
   `createtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `updatetime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   `weigh` int(10) NOT NULL DEFAULT '0' COMMENT '权重',
-  `status` varchar(30) NOT NULL DEFAULT '' COMMENT '状态',
+  `status` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '状态',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`) USING BTREE,
   KEY `pid` (`pid`),
   KEY `weigh` (`weigh`)
-) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='节点表';
+) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT COMMENT='节点表';
 
 /*Data for the table `sdty_auth_rule` */
 
@@ -236,6 +236,7 @@ insert  into `sdty_auth_rule`(`id`,`type`,`pid`,`name`,`title`,`icon`,`condition
 insert  into `sdty_auth_rule`(`id`,`type`,`pid`,`name`,`title`,`icon`,`condition`,`remark`,`ismenu`,`createtime`,`updatetime`,`weigh`,`status`) values (107,'file',104,'page/edit','编辑','fa fa-circle-o','','',0,1508465712,1508465712,0,'normal');
 insert  into `sdty_auth_rule`(`id`,`type`,`pid`,`name`,`title`,`icon`,`condition`,`remark`,`ismenu`,`createtime`,`updatetime`,`weigh`,`status`) values (108,'file',104,'page/del','删除','fa fa-circle-o','','',0,1508465712,1508465712,0,'normal');
 insert  into `sdty_auth_rule`(`id`,`type`,`pid`,`name`,`title`,`icon`,`condition`,`remark`,`ismenu`,`createtime`,`updatetime`,`weigh`,`status`) values (109,'file',104,'page/multi','批量更新','fa fa-circle-o','','',0,1508465712,1508465712,0,'normal');
+insert  into `sdty_auth_rule`(`id`,`type`,`pid`,`name`,`title`,`icon`,`condition`,`remark`,`ismenu`,`createtime`,`updatetime`,`weigh`,`status`) values (110,'file',0,'demo','AdminLTE示例','fa fa-circle-o','','',1,1508483836,1508483836,0,'normal');
 
 /*Table structure for table `sdty_category` */
 
@@ -244,22 +245,22 @@ DROP TABLE IF EXISTS `sdty_category`;
 CREATE TABLE `sdty_category` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '父ID',
-  `type` varchar(30) NOT NULL DEFAULT '' COMMENT '栏目类型',
-  `name` varchar(30) NOT NULL DEFAULT '',
-  `nickname` varchar(50) NOT NULL DEFAULT '',
-  `flag` set('hot','index','recommend') NOT NULL DEFAULT '',
-  `image` varchar(100) NOT NULL DEFAULT '' COMMENT '图片',
-  `keywords` varchar(255) NOT NULL DEFAULT '' COMMENT '关键字',
-  `description` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
-  `diyname` varchar(30) NOT NULL DEFAULT '' COMMENT '自定义名称',
+  `type` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '栏目类型',
+  `name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `nickname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `flag` set('hot','index','recommend') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `image` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '图片',
+  `keywords` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '关键字',
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '描述',
+  `diyname` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '自定义名称',
   `createtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `updatetime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   `weigh` int(10) NOT NULL DEFAULT '0' COMMENT '权重',
-  `status` varchar(30) NOT NULL DEFAULT '' COMMENT '状态',
+  `status` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '状态',
   PRIMARY KEY (`id`),
   KEY `weigh` (`weigh`,`id`),
   KEY `pid` (`pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='分类表';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='分类表';
 
 /*Data for the table `sdty_category` */
 
@@ -283,18 +284,18 @@ DROP TABLE IF EXISTS `sdty_config`;
 
 CREATE TABLE `sdty_config` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL DEFAULT '' COMMENT '变量名',
-  `group` varchar(30) NOT NULL DEFAULT '' COMMENT '分组',
-  `title` varchar(100) NOT NULL DEFAULT '' COMMENT '变量标题',
-  `tip` varchar(100) NOT NULL DEFAULT '' COMMENT '变量描述',
-  `type` varchar(30) NOT NULL DEFAULT '' COMMENT '类型:string,text,int,bool,array,datetime,date,file',
-  `value` text NOT NULL COMMENT '变量值',
-  `content` text NOT NULL COMMENT '变量字典数据',
-  `rule` varchar(100) NOT NULL DEFAULT '' COMMENT '验证规则',
-  `extend` varchar(255) NOT NULL DEFAULT '' COMMENT '扩展属性',
+  `name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '变量名',
+  `group` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '分组',
+  `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '变量标题',
+  `tip` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '变量描述',
+  `type` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '类型:string,text,int,bool,array,datetime,date,file',
+  `value` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '变量值',
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '变量字典数据',
+  `rule` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '验证规则',
+  `extend` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '扩展属性',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='系统配置';
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统配置';
 
 /*Data for the table `sdty_config` */
 
@@ -323,20 +324,20 @@ DROP TABLE IF EXISTS `sdty_page`;
 CREATE TABLE `sdty_page` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `category_id` int(10) NOT NULL DEFAULT '0' COMMENT '分类ID',
-  `title` varchar(50) NOT NULL DEFAULT '' COMMENT '标题',
-  `keywords` varchar(255) NOT NULL DEFAULT '' COMMENT '关键字',
-  `flag` set('hot','index','recommend') NOT NULL DEFAULT '' COMMENT '标志',
-  `image` varchar(255) NOT NULL DEFAULT '' COMMENT '头像',
-  `content` text NOT NULL COMMENT '内容',
-  `icon` varchar(50) NOT NULL DEFAULT '' COMMENT '图标',
+  `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '标题',
+  `keywords` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '关键字',
+  `flag` set('hot','index','recommend') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '标志',
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '头像',
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '内容',
+  `icon` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '图标',
   `views` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '点击',
   `comments` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '评论',
   `createtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `updatetime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   `weigh` int(10) NOT NULL DEFAULT '0' COMMENT '权重',
-  `status` varchar(30) NOT NULL DEFAULT '' COMMENT '状态',
+  `status` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='单页表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT COMMENT='单页表';
 
 /*Data for the table `sdty_page` */
 
@@ -348,13 +349,13 @@ DROP TABLE IF EXISTS `sdty_user`;
 
 CREATE TABLE `sdty_user` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `username` varchar(32) NOT NULL DEFAULT '' COMMENT '用户名',
-  `nickname` varchar(50) NOT NULL DEFAULT '' COMMENT '昵称',
-  `password` varchar(32) NOT NULL DEFAULT '' COMMENT '密码',
-  `salt` varchar(30) NOT NULL DEFAULT '' COMMENT '密码盐',
-  `email` varchar(100) NOT NULL DEFAULT '' COMMENT '电子邮箱',
-  `mobile` varchar(11) NOT NULL DEFAULT '' COMMENT '手机号',
-  `avatar` varchar(255) NOT NULL DEFAULT '' COMMENT '头像',
+  `username` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户名',
+  `nickname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '昵称',
+  `password` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '密码',
+  `salt` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '密码盐',
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '电子邮箱',
+  `mobile` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '手机号',
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '头像',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '等级',
   `gender` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '性别',
   `birthday` date DEFAULT NULL COMMENT '生日',
@@ -362,18 +363,18 @@ CREATE TABLE `sdty_user` (
   `prevtime` int(10) NOT NULL DEFAULT '0' COMMENT '上次登录时间',
   `loginfailure` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '失败次数',
   `logintime` int(11) NOT NULL DEFAULT '0' COMMENT '登录时间',
-  `loginip` varchar(50) NOT NULL DEFAULT '' COMMENT '登录IP',
-  `joinip` varchar(50) NOT NULL DEFAULT '' COMMENT '加入IP',
+  `loginip` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '登录IP',
+  `joinip` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '加入IP',
   `jointime` int(10) NOT NULL DEFAULT '0' COMMENT '加入时间',
   `createtime` int(10) NOT NULL DEFAULT '0' COMMENT '创建时间',
   `updatetime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `token` varchar(50) NOT NULL DEFAULT '' COMMENT 'Token',
-  `status` varchar(30) NOT NULL DEFAULT '' COMMENT '状态',
+  `token` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Token',
+  `status` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '状态',
   PRIMARY KEY (`id`),
   KEY `username` (`username`),
   KEY `email` (`email`),
   KEY `mobile` (`mobile`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='会员表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT COMMENT='会员表';
 
 /*Data for the table `sdty_user` */
 
@@ -385,15 +386,15 @@ DROP TABLE IF EXISTS `sdty_wechat_autoreply`;
 
 CREATE TABLE `sdty_wechat_autoreply` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) NOT NULL DEFAULT '' COMMENT '标题',
-  `text` varchar(100) NOT NULL DEFAULT '' COMMENT '触发文本',
-  `eventkey` varchar(50) NOT NULL DEFAULT '' COMMENT '响应事件',
-  `remark` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
+  `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '标题',
+  `text` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '触发文本',
+  `eventkey` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '响应事件',
+  `remark` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注',
   `createtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `updatetime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `status` varchar(30) NOT NULL DEFAULT '' COMMENT '状态',
+  `status` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='微信自动回复表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='微信自动回复表';
 
 /*Data for the table `sdty_wechat_autoreply` */
 
@@ -406,14 +407,14 @@ DROP TABLE IF EXISTS `sdty_wechat_config`;
 
 CREATE TABLE `sdty_wechat_config` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '配置名称',
-  `title` varchar(50) NOT NULL DEFAULT '' COMMENT '配置标题',
-  `value` text NOT NULL COMMENT '配置值',
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '配置名称',
+  `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '配置标题',
+  `value` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '配置值',
   `createtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `updatetime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='微信配置表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='微信配置表';
 
 /*Data for the table `sdty_wechat_config` */
 
@@ -427,17 +428,17 @@ DROP TABLE IF EXISTS `sdty_wechat_context`;
 
 CREATE TABLE `sdty_wechat_context` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `openid` varchar(64) NOT NULL DEFAULT '',
-  `type` varchar(30) NOT NULL DEFAULT '' COMMENT '类型',
-  `eventkey` varchar(64) NOT NULL DEFAULT '',
-  `command` varchar(64) NOT NULL DEFAULT '',
-  `message` varchar(255) NOT NULL DEFAULT '' COMMENT '内容',
+  `openid` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `type` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '类型',
+  `eventkey` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `command` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `message` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '内容',
   `refreshtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '最后刷新时间',
   `createtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `updatetime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   PRIMARY KEY (`id`),
   KEY `openid` (`openid`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='微信上下文表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='微信上下文表';
 
 /*Data for the table `sdty_wechat_context` */
 
@@ -447,17 +448,17 @@ DROP TABLE IF EXISTS `sdty_wechat_response`;
 
 CREATE TABLE `sdty_wechat_response` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) NOT NULL DEFAULT '' COMMENT '资源名',
-  `eventkey` varchar(128) NOT NULL DEFAULT '' COMMENT '事件',
-  `type` enum('text','image','news','voice','video','music','link','app') NOT NULL DEFAULT 'text' COMMENT '类型',
-  `content` text NOT NULL COMMENT '内容',
-  `remark` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
+  `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '资源名',
+  `eventkey` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '事件',
+  `type` enum('text','image','news','voice','video','music','link','app') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'text' COMMENT '类型',
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '内容',
+  `remark` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注',
   `createtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `updatetime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `status` varchar(30) NOT NULL DEFAULT '' COMMENT '状态',
+  `status` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '状态',
   PRIMARY KEY (`id`),
   UNIQUE KEY `event` (`eventkey`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='微信资源表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='微信资源表';
 
 /*Data for the table `sdty_wechat_response` */
 
