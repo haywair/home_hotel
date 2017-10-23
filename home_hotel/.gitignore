@@ -1,4 +1,3 @@
-/nbproject/
 .idea
 composer.lock
 *.log
@@ -8,6 +7,4 @@ vendor
 runtime
 addons
 public/assets/libs/
-/application/admin/command/Install/*.lock
 /public/uploads
-/node_modules/
